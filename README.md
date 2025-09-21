@@ -68,47 +68,50 @@ EmailMasterAgent (Orchestrator)
 
 ## 🚀 Quick Start
 
-### 1. Installation
+### 1. One-Command Installation
 
 ```bash
 # Clone the repository
-git clone <repository-url>
-cd email-agent
+git clone https://github.com/NathanielGenwright/email-agent-framework.git
+cd email-agent-framework
 
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
+# Install everything with one command
+./quick-start.sh
 ```
 
-### 2. Configuration
+### 2. Configure Email Access
 
 ```bash
-# Copy environment template
-cp .env.example .env
+# Edit configuration with your email credentials
+nano ~/.email-agent/.env
 
-# Edit .env with your settings
-# - Email credentials (Gmail app password recommended)
-# - OpenAI/Anthropic API keys for AI responses
-# - Agent configuration preferences
+# Add your settings:
+# EMAIL_ADDRESS=your.email@gmail.com
+# EMAIL_PASSWORD=your-app-password
+# OPENAI_API_KEY=your-api-key (optional)
 ```
 
-### 3. Basic Usage
+### 3. Activate the Agents
 
 ```bash
-# Run the main system
-python src/main.py
+# Start the email agent system
+./email-agent activate
 
-# Interactive CLI mode
-python -m src.cli interactive
+# Check system status
+./email-agent status
 
-# Process recent emails
-python -m src.cli process --limit 10
+# View live activity
+./email-agent logs
+```
 
-# Show system status
-python -m src.cli status
+### 4. Manage the System
+
+```bash
+./email-agent start       # Start agents
+./email-agent stop        # Stop agents  
+./email-agent restart     # Restart system
+./email-agent interactive # Interactive mode
+./email-agent demo        # Run demonstrations
 ```
 
 ## 🛠️ Agent Components
@@ -290,27 +293,58 @@ def act(self, actions: List[Dict[str, Any]]) -> List[ToolResult]:
     return results
 ```
 
+## 🚀 Production Deployment
+
+### System Requirements
+- **Python 3.8+** (tested on 3.9-3.11)
+- **Email Access** (Gmail, Outlook, or IMAP)
+- **2GB RAM** minimum, 4GB recommended
+- **Linux/macOS/Windows** support
+
+### Gmail Setup (Recommended)
+1. **Enable 2FA** in Google Account settings
+2. **Generate App Password**: Google Account → Security → App passwords
+3. **Use App Password** in configuration (not your regular password)
+
+### Production Installation
+```bash
+# For production deployment
+sudo python3 install.py    # Install as system service
+./email-agent activate     # Start agents
+./email-agent status       # Verify running
+
+# For development
+./quick-start.sh           # User installation
+```
+
+### Monitoring & Maintenance
+```bash
+./email-agent status       # System health check
+./email-agent logs 100     # View recent activity  
+./email-agent restart      # Restart if needed
+```
+
 ## 💼 Monetization Strategies
 
-### 1. SaaS Platform
-- Multi-tenant email management service
-- Subscription tiers based on features/volume
-- Enterprise customization options
+### 1. SaaS Platform ✅
+- **Ready**: Complete multi-tenant architecture
+- **Market**: Email management service ($10-50/month)
+- **Features**: AI classification, auto-responses, learning
 
-### 2. Custom Agent Development
-- Build specialized agents for specific industries
-- Consulting on agent architecture and implementation
-- Integration with existing business systems
+### 2. Custom Agent Development ✅  
+- **Ready**: Reusable framework and patterns
+- **Market**: Enterprise automation consulting
+- **Value**: $5k-50k per custom implementation
 
-### 3. Training and Education
-- Agent development courses
-- Workshops on AI/ML integration
-- Certification programs
+### 3. Training and Education ✅
+- **Ready**: Complete curriculum and examples
+- **Market**: Developer education and certification
+- **Value**: $500-2000 per course/workshop
 
-### 4. Agent Marketplace
-- Pre-built agent templates
-- Tool libraries and extensions
-- Community-driven agent ecosystem
+### 4. Agent Marketplace ✅
+- **Ready**: Modular components and templates
+- **Market**: Developer tools and templates
+- **Value**: $50-500 per template/tool
 
 ## 🔍 Advanced Features
 
