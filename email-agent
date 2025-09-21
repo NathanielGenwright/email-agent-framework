@@ -1,0 +1,135 @@
+#!/usr/bin/env python3
+"""
+Email Agent System Command Line Tool
+
+Main executable for managing the email agent system.
+"""
+
+import sys
+import os
+from pathlib import Path
+
+# Add the current directory to Python path for imports
+current_dir = Path(__file__).parent
+sys.path.insert(0, str(current_dir))
+
+def show_help():
+    """Show help information."""
+    print("""
+🤖 Email Agent System - Command Line Interface
+
+USAGE:
+    email-agent <command> [options]
+
+COMMANDS:
+    install         Install the email agent system
+    activate        Activate and start the agents
+    start           Start the email agent system  
+    stop            Stop the email agent system
+    restart         Restart the email agent system
+    status          Show system status
+    logs            Show recent log entries
+    interactive     Start interactive CLI mode
+    demo            Run concept demonstration
+    help            Show this help message
+
+INSTALLATION:
+    email-agent install        # Install system
+    email-agent activate       # Start agents
+
+MANAGEMENT:
+    email-agent start          # Start agents
+    email-agent stop           # Stop agents
+    email-agent restart        # Restart agents
+    email-agent status         # Check status
+
+INTERACTION:
+    email-agent interactive    # Interactive CLI
+    email-agent demo           # Run demonstrations
+    email-agent logs           # View logs
+
+EXAMPLES:
+    # First time setup
+    email-agent install
+    email-agent activate
+
+    # Daily management
+    email-agent status
+    email-agent restart
+    email-agent logs
+
+    # Interactive use
+    email-agent interactive
+
+For more information, see the README.md file.
+""")
+
+def main():
+    """Main entry point."""
+    if len(sys.argv) < 2:
+        show_help()
+        return
+    
+    command = sys.argv[1].lower()
+    
+    try:
+        if command in ['help', '-h', '--help']:
+            show_help()
+            
+        elif command == 'install':
+            from install import EmailAgentInstaller
+            installer = EmailAgentInstaller()
+            installer.install()
+            
+        elif command in ['activate', 'start']:
+            from activate import EmailAgentActivator
+            activator = EmailAgentActivator()
+            activator.activate()
+            
+        elif command == 'stop':
+            from activate import EmailAgentActivator
+            activator = EmailAgentActivator()
+            activator.stop_agents()
+            
+        elif command == 'restart':
+            from activate import EmailAgentActivator
+            activator = EmailAgentActivator()
+            activator.restart_agents()
+            
+        elif command == 'status':
+            from activate import EmailAgentActivator
+            activator = EmailAgentActivator()
+            activator.get_status()
+            
+        elif command == 'logs':
+            from activate import EmailAgentActivator
+            activator = EmailAgentActivator()
+            lines = int(sys.argv[2]) if len(sys.argv) > 2 else 50
+            activator.show_logs(lines)
+            
+        elif command == 'interactive':
+            # Run the interactive CLI
+            os.system(f"{sys.executable} -m src.cli interactive")
+            
+        elif command == 'demo':
+            # Run the concept demonstration
+            demo_script = current_dir / "examples" / "agent_concepts_demo.py"
+            if demo_script.exists():
+                os.system(f"{sys.executable} {demo_script}")
+            else:
+                print("Demo script not found. Run from the project directory.")
+            
+        else:
+            print(f"Unknown command: {command}")
+            print("Run 'email-agent help' for available commands.")
+            sys.exit(1)
+            
+    except KeyboardInterrupt:
+        print("\n\nOperation cancelled by user.")
+        sys.exit(1)
+    except Exception as e:
+        print(f"Error: {e}")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()
