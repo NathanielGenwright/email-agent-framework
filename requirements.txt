@@ -1,0 +1,36 @@
+# Core dependencies for email agent
+openai>=1.0.0
+anthropic>=0.7.0
+langchain>=0.1.0
+langchain-openai>=0.0.8
+langchain-anthropic>=0.1.0
+pydantic>=2.0.0
+pydantic-settings>=2.0.0
+
+# Email handling
+imaplib2>=3.6
+email-reply-parser>=0.5.12
+beautifulsoup4>=4.12.0
+
+# Data storage and processing
+sqlalchemy>=2.0.0
+sqlite3  # Built into Python
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Web interface (optional)
+fastapi>=0.100.0
+uvicorn>=0.23.0
+jinja2>=3.1.0
+
+# Utilities
+python-dotenv>=1.0.0
+colorama>=0.4.6
+rich>=13.0.0
+click>=8.1.0
+schedule>=1.2.0
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+responses>=0.23.0
